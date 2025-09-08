@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" th:href="@{/bootstrap.min.css}">
+    <!-- custom CSS -->
+    <link rel="stylesheet" th:href="@{/style.css}">
+
+    <title>Hello, sbb!</title>
+</head>
+<body>
+<!-- 하위 템플릿에서 이 영역을 채움 -->
+<th:block layout:fragment="content"></th:block>
+</body>
+</html>
