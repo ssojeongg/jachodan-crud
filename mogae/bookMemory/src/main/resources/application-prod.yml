@@ -1,0 +1,11 @@
+spring:
+  profiles: prod
+  datasource:
+    url: jdbc:mysql://prod-db:3306/prod_db
+    username: prod_user
+    password: ${DB_PASSWORD}   # 환경 변수로 민감 정보 주입
+logging:
+  level:
+    root: WARN
+server:
+  port: 8080
