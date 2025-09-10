@@ -1,8 +1,8 @@
 package bookMemory.bookMemory.controller;
 
-import bookMemory.bookMemory.controller.dto.request.AddPostRequest;
-import bookMemory.bookMemory.controller.dto.response.PostResponse;
-import bookMemory.bookMemory.controller.dto.request.UpdatePostRequest;
+import bookMemory.bookMemory.dto.request.AddPostRequest;
+import bookMemory.bookMemory.dto.response.PostResponse;
+import bookMemory.bookMemory.dto.request.UpdatePostRequest;
 import bookMemory.bookMemory.model.Post;
 import bookMemory.bookMemory.service.PostService;
 import io.swagger.v3.oas.annotations.Operation;

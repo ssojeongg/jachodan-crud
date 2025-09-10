@@ -1,4 +1,4 @@
-package bookMemory.bookMemory.controller.dto.response;
+package bookMemory.bookMemory.dto.response;
 
 import bookMemory.bookMemory.model.Post;
 import io.swagger.v3.oas.annotations.media.Schema;

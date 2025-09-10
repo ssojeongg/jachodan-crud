@@ -1,7 +1,7 @@
 package bookMemory.bookMemory.service;
 
-import bookMemory.bookMemory.controller.dto.request.AddPostRequest;
-import bookMemory.bookMemory.controller.dto.request.UpdatePostRequest;
+import bookMemory.bookMemory.dto.request.AddPostRequest;
+import bookMemory.bookMemory.dto.request.UpdatePostRequest;
 import bookMemory.bookMemory.model.Post;
 
 public interface PostService {
