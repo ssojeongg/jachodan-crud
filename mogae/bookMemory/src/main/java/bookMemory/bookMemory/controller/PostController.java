@@ -1,8 +1,8 @@
 package bookMemory.bookMemory.controller;
 
-import bookMemory.bookMemory.controller.dto.AddPostRequest;
-import bookMemory.bookMemory.controller.dto.PostResponse;
-import bookMemory.bookMemory.controller.dto.UpdatePostRequest;
+import bookMemory.bookMemory.controller.dto.request.AddPostRequest;
+import bookMemory.bookMemory.controller.dto.response.PostResponse;
+import bookMemory.bookMemory.controller.dto.request.UpdatePostRequest;
 import bookMemory.bookMemory.model.Post;
 import bookMemory.bookMemory.service.PostService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -11,6 +11,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -37,7 +38,7 @@ public class PostController {
             )
     })
     @PostMapping
-    public ResponseEntity<PostResponse> addPost(@RequestBody AddPostRequest request
+    public ResponseEntity<PostResponse> addPost(@RequestBody @Valid AddPostRequest request
     ) {
         Post post = postService.createPost(request);
         return ResponseEntity
@@ -88,7 +89,7 @@ public class PostController {
             )
     })
     @PutMapping
-    public ResponseEntity<PostResponse> updatePost(@RequestBody UpdatePostRequest request) {
+    public ResponseEntity<PostResponse> updatePost(@RequestBody @Valid UpdatePostRequest request) {
         Post post = postService.updatePost(request);
         return ResponseEntity
                 .status(HttpStatus.OK)

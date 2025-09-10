@@ -29,7 +29,9 @@ public class Post {
     private Book book;
 
     private String title;
+
     private String phrase;
+
     private String opinion;
 
     @CreatedDate
