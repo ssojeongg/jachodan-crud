@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>게시글 수정</title>
+    <link th:href="@{/css/main.css}" rel="stylesheet">
+</head>
+<body>
+<div class="wrap">
+<h1>게시글 수정</h1>
+<form th:action="@{/posts/{id}(id=${post.id})}" method="post">
+    <input type="text" name="title" th:value="${post.title}" placeholder="제목"/>
+    <textarea name="content" th:text="${post.content}" placeholder="내용"></textarea>
+    <div class="btn-wrap">
+        <button type="submit">수정하기</button>
+        <a class="write-btn" th:href="@{/posts/{id}(id=${post.id})}">돌아가기</a>
+    </div>
+</form>
+</div>
+</body>
+</html>

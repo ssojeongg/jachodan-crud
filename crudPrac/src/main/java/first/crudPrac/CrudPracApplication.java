@@ -7,7 +7,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class CrudPracApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(CrudPracApplication.class, args);
+
+        SpringApplication.run(CrudPracApplication.class, args);
 	}
 
 }
