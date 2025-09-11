@@ -1,0 +1,21 @@
+<link rel="stylesheet" type="text/css" th:href="@{/style.css}">
+
+<h1 th:text="${post.post_title}">제목</h1>
+<div th:text="${post.post_content}">내용</div>
+
+<h5 th:text="|${#lists.size(post.comments)}개의 답변이 있습니다.|"></h5>
+<div>
+    <ul>
+        <li th:each="comment : ${post.comments}" th:text="${comment.comment_content}"></li>
+    </ul>
+</div>
+
+<form th:action="@{|/comment/new/${post.post_id}|}" th:object="${commentForm}" method="post">
+<!--    <div role="alert" th:if="${#fields.hasAnyErrors()}">-->
+<!--        <div th:each="err : ${#fields.allErrors()}" th:text="${err}" />-->
+<!--    </div>-->
+    <div th:replace="~{errForm :: errFormFragment}"></div>
+
+    <textarea name="content" id="content" rows="15"></textarea>
+    <input type="submit" value="답변등록">
+</form>
