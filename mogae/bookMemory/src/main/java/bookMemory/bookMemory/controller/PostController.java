@@ -31,7 +31,8 @@ public class PostController {
     @ApiResponses(value = {
             @ApiResponse(
                     responseCode = "201", description = "성공적으로 생성됨",
-                    content = @Content(schema = @Schema(implementation = PostResponse.class))),
+                    content = @Content(schema = @Schema(implementation = PostResponse.class))
+            ),
             @ApiResponse(
                     responseCode = "400", description = "요청값이 잘못됨",
                     content = @Content

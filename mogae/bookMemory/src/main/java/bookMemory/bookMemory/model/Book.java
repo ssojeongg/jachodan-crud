@@ -26,8 +26,9 @@ public class Book {
     private String genre;
 
     @OneToMany(mappedBy = "book", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Post> posts = new ArrayList<>();
+    private final List<Post> posts = new ArrayList<>();
 
+    @Builder
     public Book(String title, String genre) {
         this.title = title;
         this.genre = genre;
@@ -35,13 +36,10 @@ public class Book {
 
     public void updateAuthor(Author author) {
         this.author = author;
-        if (!author.getBooks().contains(this)) {
-            author.getBooks().add(this);
-        }
+        author.getBooks().add(this);
     }
 
     public void addPost(Post post) {
         this.posts.add(post);
-        post.updateBook(this);
     }
 }

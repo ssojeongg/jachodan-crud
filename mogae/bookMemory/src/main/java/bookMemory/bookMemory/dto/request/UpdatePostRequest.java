@@ -20,6 +20,10 @@ public class UpdatePostRequest {
     @NotNull(message = "책ID는 필수 값 입니다.")
     private Long bookId;
 
+    @Schema(description = "게시글 제목", example = "책을 읽고나서")
+    @NotBlank(message = "게시글 제목은 필수 값 입니다.")
+    private String title;
+
     @Schema(description = "책 구절", example = "사람은 무엇으로 사는가")
     @NotBlank(message = "책 구절은 필수 값 입니다.")
     private String phrase;

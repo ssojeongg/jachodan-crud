@@ -16,12 +16,17 @@ public class Author {
     @Id
     @GeneratedValue
     private Long id;
-    private String name;
-    private String gender;
-    private String nation;
-    @OneToMany(mappedBy = "author", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Book> books = new ArrayList<>();
 
+    private String name;
+
+    private String gender;
+
+    private String nation;
+
+    @OneToMany(mappedBy = "author", cascade = CascadeType.ALL, orphanRemoval = true)
+    private final List<Book> books = new ArrayList<>();
+
+    @Builder
     public Author(String name, String gender, String nation) {
         this.name = name;
         this.gender = gender;
@@ -30,6 +35,5 @@ public class Author {
 
     public void addBook(Book book) {
         this.books.add(book);
-        book.updateAuthor(this);
     }
 }
