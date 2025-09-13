@@ -3,6 +3,8 @@ package bookMemory.bookMemory.controller;
 import bookMemory.bookMemory.dto.request.AddPostRequest;
 import bookMemory.bookMemory.dto.response.PostResponse;
 import bookMemory.bookMemory.dto.request.UpdatePostRequest;
+import bookMemory.bookMemory.error.response.ErrorResponse;
+import bookMemory.bookMemory.error.response.ValidationErrorResponse;
 import bookMemory.bookMemory.model.Post;
 import bookMemory.bookMemory.service.PostService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -35,7 +37,11 @@ public class PostController {
             ),
             @ApiResponse(
                     responseCode = "400", description = "요청값이 잘못됨",
-                    content = @Content
+                    content = @Content(schema = @Schema(implementation = ValidationErrorResponse.class))
+            ),
+            @ApiResponse(
+                    responseCode = "404", description = "존재하지 않는 회원, 존재하지 않는 책",
+                    content = @Content(schema = @Schema(implementation = ErrorResponse.class))
             )
     })
     @PostMapping
@@ -56,12 +62,8 @@ public class PostController {
                     content = @Content(schema = @Schema(implementation = PostResponse.class))
             ),
             @ApiResponse(
-                    responseCode = "400", description = "요청값이 잘못됨",
-                    content = @Content
-            ),
-            @ApiResponse(
-                    responseCode = "404", description = "게시글을 찾을 수 없음",
-                    content = @Content
+                    responseCode = "404", description = "존재하지 않는 게시글",
+                    content = @Content(schema = @Schema(implementation = ErrorResponse.class))
             )
     })
     @GetMapping("/{id}")
@@ -82,11 +84,11 @@ public class PostController {
             ),
             @ApiResponse(
                     responseCode = "400", description = "요청값이 잘못됨",
-                    content = @Content
+                    content = @Content(schema = @Schema(implementation = ValidationErrorResponse.class))
             ),
             @ApiResponse(
-                    responseCode = "404", description = "게시글을 찾을 수 없음",
-                    content = @Content
+                    responseCode = "404", description = "존재하지 않는 책, 존재하지 않는 게시글",
+                    content = @Content(schema = @Schema(implementation = ErrorResponse.class))
             )
     })
     @PutMapping
@@ -107,8 +109,8 @@ public class PostController {
                     content = @Content(schema = @Schema(implementation = PostResponse.class))
             ),
             @ApiResponse(
-                    responseCode = "400", description = "요청값이 잘못됨",
-                    content = @Content
+                    responseCode = "404", description = "존재하지 않는 게시글",
+                    content = @Content(schema = @Schema(implementation = ErrorResponse.class))
             )
     })
     @DeleteMapping("/{id}")
