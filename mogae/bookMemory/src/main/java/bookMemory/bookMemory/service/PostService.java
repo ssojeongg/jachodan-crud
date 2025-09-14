@@ -2,7 +2,8 @@ package bookMemory.bookMemory.service;
 
 import bookMemory.bookMemory.dto.request.AddPostRequest;
 import bookMemory.bookMemory.dto.request.UpdatePostRequest;
-import bookMemory.bookMemory.error.exception.NotFoundException;
+import bookMemory.bookMemory.error.ErrorCode;
+import bookMemory.bookMemory.error.exception.BusinessException;
 import bookMemory.bookMemory.model.Book;
 import bookMemory.bookMemory.model.Member;
 import bookMemory.bookMemory.model.Post;
@@ -48,16 +49,16 @@ public class PostService {
 
     private Member findMemberById(Long id) {
         return memberRepository.findById(id)
-                .orElseThrow(() -> new NotFoundException("NOT_FOUND_MEMBER", "존재하지 않는 회원입니다. id=" + id));
+                .orElseThrow(() -> new BusinessException(ErrorCode.NOT_FOUND_MEMBER));
     }
 
     private Book findBookById(Long id) {
         return bookRepository.findById(id)
-                .orElseThrow(() -> new NotFoundException("NOT_FOUND_BOOK", "존재하지 않는 책입니다. id=" + id));
+                .orElseThrow(() -> new BusinessException(ErrorCode.NOT_FOUND_BOOK));
     }
 
     private Post findPostById(Long id) {
         return postRepository.findById(id)
-                .orElseThrow(() -> new NotFoundException("NOT_FOUND_POST", "존재하지 않는 게시글입니다. id=" + id));
+                .orElseThrow(() -> new BusinessException(ErrorCode.NOT_FOUND_POST));
     }
 }

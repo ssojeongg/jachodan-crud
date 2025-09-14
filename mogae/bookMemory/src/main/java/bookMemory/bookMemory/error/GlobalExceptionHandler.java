@@ -1,6 +1,6 @@
 package bookMemory.bookMemory.error;
 
-import bookMemory.bookMemory.error.exception.NotFoundException;
+import bookMemory.bookMemory.error.exception.BusinessException;
 import bookMemory.bookMemory.error.response.ErrorResponse;
 import bookMemory.bookMemory.error.response.ValidationErrorResponse;
 import lombok.extern.slf4j.Slf4j;
@@ -16,22 +16,29 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<ValidationErrorResponse> handleValidationException(MethodArgumentNotValidException ex) {
-        log.error("[ValidationException] ex", ex);
-        ValidationErrorResponse errors = new ValidationErrorResponse();
+        log.error("[ValidationException] {}", ex.getMessage(), ex);
+        ErrorCode errorCode = ErrorCode.BAD_REQUEST;
+        ValidationErrorResponse errors = new ValidationErrorResponse(errorCode);
         ex.getBindingResult().getFieldErrors().forEach(error ->
                 errors.addError(error.getField(), error.getDefaultMessage())
         );
+        ex.getBindingResult().getGlobalErrors().forEach(error ->
+                errors.addError(error.getObjectName(), error.getDefaultMessage())
+        );
         return ResponseEntity
-                .status(HttpStatus.BAD_REQUEST)
+                .status(errorCode.getStatus())
                 .body(errors);
     }
 
-    @ExceptionHandler(NotFoundException.class)
-    public ResponseEntity<ErrorResponse> handleNotFoundException(NotFoundException ex) {
-        log.error("[NotFoundException] ex", ex);
-        ErrorResponse error = new ErrorResponse(ex.getErrorCode(), ex.getMessage());
+    @ExceptionHandler(BusinessException.class)
+    public ResponseEntity<ErrorResponse> handleBusinessException(BusinessException ex) {
+        ErrorCode errorCode = ex.getErrorCode();
+        String code = errorCode.getCode();
+        String message = errorCode.getMessage();
+        log.error("[{}] {}", code, message, ex);
+        ErrorResponse error = new ErrorResponse(code, message);
         return ResponseEntity
-                .status(HttpStatus.NOT_FOUND)
+                .status(errorCode.getStatus())
                 .body(error);
     }
 }

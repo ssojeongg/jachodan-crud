@@ -1,19 +1,23 @@
 package bookMemory.bookMemory.error.response;
 
+import bookMemory.bookMemory.error.ErrorCode;
 import lombok.Getter;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 @Getter
 public class ValidationErrorResponse extends ErrorResponse{
-    private final Map<String, String> errors = new HashMap<>();
+    private final Map<String, List<String>> errors = new HashMap<>();
 
-    public ValidationErrorResponse() {
-        super("BAD_REQUEST", "요청값이 유효하지 않습니다.");
+    public ValidationErrorResponse(ErrorCode errorCode) {
+        super(errorCode.getCode(), errorCode.getMessage());
     }
 
     public void addError(String field, String message) {
-        this.errors.put(field, message);
+        errors.computeIfAbsent(field, k -> new ArrayList<>()).add(message);
+    }
+
+    public Map<String, List<String>> getErrors() {
+        return Collections.unmodifiableMap(errors);
     }
 }
