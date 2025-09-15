@@ -19,6 +19,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.net.URI;
+
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/v1/posts")
@@ -45,12 +47,13 @@ public class PostController {
             )
     })
     @PostMapping
-    public ResponseEntity<PostResponse> addPost(@RequestBody @Valid AddPostRequest request
+    public ResponseEntity<PostResponse> createPost(@RequestBody @Valid AddPostRequest request
     ) {
-        Post post = postService.createPost(request);
+        PostResponse response = postService.createPost(request);
+        URI location = URI.create("v1/posts/" + response.getId());
         return ResponseEntity
-                .status(HttpStatus.CREATED)
-                .body(PostResponse.from(post));
+                .created(location)
+                .body(response);
     }
 
     @Operation(
@@ -68,10 +71,8 @@ public class PostController {
     })
     @GetMapping("/{id}")
     public ResponseEntity<PostResponse> getPost(@PathVariable Long id) {
-        Post post = postService.getPost(id);
-        return ResponseEntity
-                .status(HttpStatus.OK)
-                .body(PostResponse.from(post));
+        PostResponse response = postService.getPost(id);
+        return ResponseEntity.ok(response);
     }
 
     @Operation(
@@ -91,12 +92,13 @@ public class PostController {
                     content = @Content(schema = @Schema(implementation = ErrorResponse.class))
             )
     })
-    @PutMapping
-    public ResponseEntity<PostResponse> updatePost(@RequestBody @Valid UpdatePostRequest request) {
-        Post post = postService.updatePost(request);
-        return ResponseEntity
-                .status(HttpStatus.OK)
-                .body(PostResponse.from(post));
+    @PutMapping("/{id}")
+    public ResponseEntity<PostResponse> updatePost(
+            @PathVariable Long id,
+            @RequestBody @Valid UpdatePostRequest request
+    ) {
+        PostResponse response = postService.updatePost(id, request);
+        return ResponseEntity.ok(response);
     }
 
     @Operation(
@@ -116,8 +118,6 @@ public class PostController {
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deletePost(@PathVariable Long id) {
         postService.deletePost(id);
-        return ResponseEntity
-                .status(HttpStatus.NO_CONTENT)
-                .build();
+        return ResponseEntity.noContent().build();
     }
 }

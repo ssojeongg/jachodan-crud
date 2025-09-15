@@ -1,6 +1,5 @@
 package bookMemory.bookMemory.domain;
 
-import bookMemory.bookMemory.vo.BaseEntity;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Getter;

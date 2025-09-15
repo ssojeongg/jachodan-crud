@@ -1,5 +1,7 @@
 package bookMemory.bookMemory.dto.response;
 
+import bookMemory.bookMemory.domain.Book;
+import bookMemory.bookMemory.domain.Member;
 import bookMemory.bookMemory.domain.Post;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;
@@ -28,13 +30,13 @@ public class PostResponse {
     @Schema(description = "등록시간", example = "??")
     private LocalDateTime registeredAt;
 
-    private Member member;
+    private MemberDto memberDto;
 
-    private Book book;
+    private BookDto bookDto;
 
     @AllArgsConstructor
     @Getter
-    public static class Member {
+    public static class MemberDto {
 
         @Schema(description = "회원ID", example = "2L")
         private Long memberId;
@@ -45,7 +47,7 @@ public class PostResponse {
 
     @AllArgsConstructor
     @Getter
-    public static class Book {
+    public static class BookDto {
 
         @Schema(description = "책ID", example = "??")
         private Long bookId;
@@ -55,8 +57,11 @@ public class PostResponse {
     }
 
     public static PostResponse from(Post post) {
-        Member member = new Member(post.getMember().getId(), post.getMember().getNickName());
-        Book book = new Book(post.getBook().getId(), post.getBook().getTitle());
+        Member member = post.getMember();
+        Book book = post.getBook();
+
+        MemberDto memberDto = new MemberDto(member.getId(), member.getNickName());
+        BookDto bookDto = new BookDto(book.getId(), book.getTitle());
 
         return PostResponse.builder()
                 .id(post.getId())
@@ -64,8 +69,8 @@ public class PostResponse {
                 .phrase(post.getPhrase())
                 .opinion(post.getOpinion())
                 .registeredAt(post.getRegisteredAt())
-                .member(member)
-                .book(book)
+                .memberDto(memberDto)
+                .bookDto(bookDto)
                 .build();
     }
 }

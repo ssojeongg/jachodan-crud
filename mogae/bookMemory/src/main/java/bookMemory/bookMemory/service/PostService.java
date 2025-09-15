@@ -2,6 +2,7 @@ package bookMemory.bookMemory.service;
 
 import bookMemory.bookMemory.dto.request.AddPostRequest;
 import bookMemory.bookMemory.dto.request.UpdatePostRequest;
+import bookMemory.bookMemory.dto.response.PostResponse;
 import bookMemory.bookMemory.error.ErrorCode;
 import bookMemory.bookMemory.error.exception.BusinessException;
 import bookMemory.bookMemory.domain.Book;
@@ -23,21 +24,22 @@ public class PostService {
     private final BookRepository bookRepository;
     private final PostRepository postRepository;
 
-    public Post createPost(AddPostRequest request) {
+    public PostResponse createPost(AddPostRequest request) {
         Member member = findMemberById(request.getMemberId());
         Book book = findBookById(request.getBookId());
         Post post = new Post(request.getTitle(), request.getPhrase(), request.getOpinion());
         post.updateMember(member);
         post.updateBook(book);
-        return postRepository.save(post);
+        Post savedPost = postRepository.save(post);
+        return PostResponse.from(savedPost);
     }
 
-    public Post updatePost(UpdatePostRequest request) {
-        Post post = findPostById(request.getPostId());
+    public PostResponse updatePost(Long postId, UpdatePostRequest request) {
+        Post post = findPostById(postId);
         Book book = findBookById(request.getBookId());
         post.updatePostDetail(request.getTitle(), request.getPhrase(), request.getOpinion());
         post.updateBook(book);
-        return post;
+        return PostResponse.from(post);
     }
 
     public void deletePost(Long postId) {
@@ -46,8 +48,9 @@ public class PostService {
     }
 
     @Transactional(readOnly = true)
-    public Post getPost(Long postId) {
-        return findPostById(postId);
+    public PostResponse getPost(Long postId) {
+        Post post = findPostById(postId);
+        return PostResponse.from(post);
     }
 
     private Member findMemberById(Long id) {
