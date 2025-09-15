@@ -4,7 +4,6 @@ import bookMemory.bookMemory.error.exception.BusinessException;
 import bookMemory.bookMemory.error.response.ErrorResponse;
 import bookMemory.bookMemory.error.response.ValidationErrorResponse;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -16,8 +15,8 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<ValidationErrorResponse> handleValidationException(MethodArgumentNotValidException ex) {
-        log.error("[ValidationException] {}", ex.getMessage(), ex);
         ErrorCode errorCode = ErrorCode.BAD_REQUEST;
+        log.error("[{}] {}", errorCode.getCode(), errorCode.getMessage(), ex);
         ValidationErrorResponse errors = new ValidationErrorResponse(errorCode);
         ex.getBindingResult().getFieldErrors().forEach(error ->
                 errors.addError(error.getField(), error.getDefaultMessage())
