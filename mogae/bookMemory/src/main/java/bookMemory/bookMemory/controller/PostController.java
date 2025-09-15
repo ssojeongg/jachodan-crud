@@ -5,7 +5,7 @@ import bookMemory.bookMemory.dto.response.PostResponse;
 import bookMemory.bookMemory.dto.request.UpdatePostRequest;
 import bookMemory.bookMemory.error.response.ErrorResponse;
 import bookMemory.bookMemory.error.response.ValidationErrorResponse;
-import bookMemory.bookMemory.model.Post;
+import bookMemory.bookMemory.domain.Post;
 import bookMemory.bookMemory.service.PostService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;

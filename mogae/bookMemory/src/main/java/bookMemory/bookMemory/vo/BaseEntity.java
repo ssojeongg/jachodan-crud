@@ -1,4 +1,4 @@
-package bookMemory.bookMemory.model;
+package bookMemory.bookMemory.vo;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.EntityListeners;

@@ -4,9 +4,9 @@ import bookMemory.bookMemory.dto.request.AddPostRequest;
 import bookMemory.bookMemory.dto.request.UpdatePostRequest;
 import bookMemory.bookMemory.error.ErrorCode;
 import bookMemory.bookMemory.error.exception.BusinessException;
-import bookMemory.bookMemory.model.Book;
-import bookMemory.bookMemory.model.Member;
-import bookMemory.bookMemory.model.Post;
+import bookMemory.bookMemory.domain.Book;
+import bookMemory.bookMemory.domain.Member;
+import bookMemory.bookMemory.domain.Post;
 import bookMemory.bookMemory.repository.BookRepository;
 import bookMemory.bookMemory.repository.MemberRepository;
 import bookMemory.bookMemory.repository.PostRepository;
@@ -26,14 +26,17 @@ public class PostService {
     public Post createPost(AddPostRequest request) {
         Member member = findMemberById(request.getMemberId());
         Book book = findBookById(request.getBookId());
-        Post post = Post.createPost(member, book, request.getTitle(), request.getPhrase(), request.getOpinion());
+        Post post = new Post(request.getTitle(), request.getPhrase(), request.getOpinion());
+        post.updateMember(member);
+        post.updateBook(book);
         return postRepository.save(post);
     }
 
     public Post updatePost(UpdatePostRequest request) {
-        Book book = findBookById(request.getBookId());
         Post post = findPostById(request.getPostId());
-        post.updatePost(book, request.getTitle(), request.getPhrase(), request.getOpinion());
+        Book book = findBookById(request.getBookId());
+        post.updatePostDetail(request.getTitle(), request.getPhrase(), request.getOpinion());
+        post.updateBook(book);
         return post;
     }
 

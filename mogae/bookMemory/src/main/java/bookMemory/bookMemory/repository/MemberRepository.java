@@ -1,6 +1,6 @@
 package bookMemory.bookMemory.repository;
 
-import bookMemory.bookMemory.model.Member;
+import bookMemory.bookMemory.domain.Member;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface MemberRepository extends JpaRepository<Member, Long> {

@@ -1,5 +1,6 @@
-package bookMemory.bookMemory.model;
+package bookMemory.bookMemory.domain;
 
+import bookMemory.bookMemory.vo.BaseEntity;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Builder;
@@ -7,7 +8,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 

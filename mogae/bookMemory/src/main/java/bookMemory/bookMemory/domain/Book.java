@@ -1,4 +1,4 @@
-package bookMemory.bookMemory.model;
+package bookMemory.bookMemory.domain;
 
 import jakarta.persistence.*;
 import lombok.AccessLevel;

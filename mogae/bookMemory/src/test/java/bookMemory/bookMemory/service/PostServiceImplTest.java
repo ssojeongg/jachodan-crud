@@ -1,9 +1,9 @@
 package bookMemory.bookMemory.service;
 
 import bookMemory.bookMemory.dto.request.AddPostRequest;
-import bookMemory.bookMemory.model.Book;
-import bookMemory.bookMemory.model.Member;
-import bookMemory.bookMemory.model.Post;
+import bookMemory.bookMemory.domain.Book;
+import bookMemory.bookMemory.domain.Member;
+import bookMemory.bookMemory.domain.Post;
 import bookMemory.bookMemory.repository.BookRepository;
 import bookMemory.bookMemory.repository.MemberRepository;
 import bookMemory.bookMemory.repository.PostRepository;
