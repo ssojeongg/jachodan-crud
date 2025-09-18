@@ -1,4 +1,4 @@
-package bookMemory.bookMemory.dto.response;
+package bookMemory.bookMemory.support.dto.response;
 
 import bookMemory.bookMemory.domain.Book;
 import bookMemory.bookMemory.domain.Member;

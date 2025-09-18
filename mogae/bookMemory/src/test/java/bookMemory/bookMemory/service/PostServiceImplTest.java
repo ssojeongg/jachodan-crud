@@ -1,6 +1,6 @@
 package bookMemory.bookMemory.service;
 
-import bookMemory.bookMemory.dto.request.AddPostRequest;
+import bookMemory.bookMemory.support.dto.request.AddPostRequest;
 import bookMemory.bookMemory.domain.Book;
 import bookMemory.bookMemory.domain.Member;
 import bookMemory.bookMemory.domain.Post;

@@ -1,11 +1,10 @@
 package bookMemory.bookMemory.controller;
 
-import bookMemory.bookMemory.dto.request.AddPostRequest;
-import bookMemory.bookMemory.dto.response.PostResponse;
-import bookMemory.bookMemory.dto.request.UpdatePostRequest;
-import bookMemory.bookMemory.error.response.ErrorResponse;
-import bookMemory.bookMemory.error.response.ValidationErrorResponse;
-import bookMemory.bookMemory.domain.Post;
+import bookMemory.bookMemory.support.dto.request.AddPostRequest;
+import bookMemory.bookMemory.support.dto.response.PostResponse;
+import bookMemory.bookMemory.support.dto.request.UpdatePostRequest;
+import bookMemory.bookMemory.support.error.response.ErrorResponse;
+import bookMemory.bookMemory.support.error.response.ValidationErrorResponse;
 import bookMemory.bookMemory.service.PostService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -15,7 +14,6 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 

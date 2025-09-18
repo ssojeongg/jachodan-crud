@@ -1,22 +1,28 @@
-package bookMemory.bookMemory.dto.request;
+package bookMemory.bookMemory.support.dto.request;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Schema(description = "게시글 수정 요청 DTO")
+@Schema(description = "게시글 생성 요청 DTO")
 @NoArgsConstructor
+@AllArgsConstructor
 @Getter @Setter
-public class UpdatePostRequest {
+public class AddPostRequest {
+
+    @Schema(description = "회원ID", example = "1L")
+    @NotNull(message = "회원ID는 필수 값 입니다.")
+    private Long memberId;
 
     @Schema(description = "책ID", example = "2L")
     @NotNull(message = "책ID는 필수 값 입니다.")
     private Long bookId;
 
-    @Schema(description = "게시글 제목", example = "책을 읽고나서")
+    @Schema(description = "게시글 제목", example = "톨스토이에 관하여")
     @NotBlank(message = "게시글 제목은 필수 값 입니다.")
     private String title;
 

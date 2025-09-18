@@ -1,4 +1,4 @@
-package bookMemory.bookMemory.config;
+package bookMemory.bookMemory.support.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;

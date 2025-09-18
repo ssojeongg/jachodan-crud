@@ -1,4 +1,4 @@
-package bookMemory.bookMemory.error.response;
+package bookMemory.bookMemory.support.error.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

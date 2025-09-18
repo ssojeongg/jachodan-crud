@@ -1,8 +1,8 @@
-package bookMemory.bookMemory.error;
+package bookMemory.bookMemory.support.error;
 
-import bookMemory.bookMemory.error.exception.BusinessException;
-import bookMemory.bookMemory.error.response.ErrorResponse;
-import bookMemory.bookMemory.error.response.ValidationErrorResponse;
+import bookMemory.bookMemory.support.error.exception.BusinessException;
+import bookMemory.bookMemory.support.error.response.ErrorResponse;
+import bookMemory.bookMemory.support.error.response.ValidationErrorResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;

@@ -1,6 +1,6 @@
-package bookMemory.bookMemory.error.response;
+package bookMemory.bookMemory.support.error.response;
 
-import bookMemory.bookMemory.error.ErrorCode;
+import bookMemory.bookMemory.support.error.ErrorCode;
 import lombok.Getter;
 
 import java.util.*;

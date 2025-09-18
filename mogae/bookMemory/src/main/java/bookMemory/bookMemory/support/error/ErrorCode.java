@@ -1,4 +1,4 @@
-package bookMemory.bookMemory.error;
+package bookMemory.bookMemory.support.error;
 
 import lombok.Getter;
 import org.springframework.http.HttpStatus;

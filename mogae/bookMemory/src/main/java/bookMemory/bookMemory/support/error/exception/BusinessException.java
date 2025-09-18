@@ -1,6 +1,6 @@
-package bookMemory.bookMemory.error.exception;
+package bookMemory.bookMemory.support.error.exception;
 
-import bookMemory.bookMemory.error.ErrorCode;
+import bookMemory.bookMemory.support.error.ErrorCode;
 import lombok.Getter;
 
 @Getter

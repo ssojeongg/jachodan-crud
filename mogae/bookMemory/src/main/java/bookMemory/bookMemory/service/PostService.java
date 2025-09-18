@@ -1,10 +1,10 @@
 package bookMemory.bookMemory.service;
 
-import bookMemory.bookMemory.dto.request.AddPostRequest;
-import bookMemory.bookMemory.dto.request.UpdatePostRequest;
-import bookMemory.bookMemory.dto.response.PostResponse;
-import bookMemory.bookMemory.error.ErrorCode;
-import bookMemory.bookMemory.error.exception.BusinessException;
+import bookMemory.bookMemory.support.dto.request.AddPostRequest;
+import bookMemory.bookMemory.support.dto.request.UpdatePostRequest;
+import bookMemory.bookMemory.support.dto.response.PostResponse;
+import bookMemory.bookMemory.support.error.ErrorCode;
+import bookMemory.bookMemory.support.error.exception.BusinessException;
 import bookMemory.bookMemory.domain.Book;
 import bookMemory.bookMemory.domain.Member;
 import bookMemory.bookMemory.domain.Post;
